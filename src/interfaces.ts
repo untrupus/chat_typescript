@@ -4,3 +4,5 @@ export interface Message {
     from: string,
     to: string
 }
+
+export type CallbackFunction = (value?: string) => void;

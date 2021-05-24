@@ -1,6 +1,8 @@
 import { $ } from './helpers';
 import { ID, CLASS } from './constants';
-import { Message } from "./interfaces";
+import { Message, CallbackFunction } from "./interfaces";
+
+
 
 export class View {
     chatWindow: HTMLElement;
@@ -28,7 +30,7 @@ export class View {
     }
 
     /** Add action on login button */
-    loginView(handler: Function) {
+    loginView(handler: CallbackFunction) {
         this.loginBtn.addEventListener('click', () => {
             if (this.userName.value !== '') {
                 handler(this.userName.value);
@@ -40,7 +42,7 @@ export class View {
     }
 
     /** Add action on logout button */
-    logoutView(handler: Function) {
+    logoutView(handler: CallbackFunction) {
         this.logoutBtn.addEventListener('click', () => {
             handler();
             this.chatWindow.className = CLASS.hide;
@@ -54,7 +56,7 @@ export class View {
     }
 
     /** Render users in users list */
-    setUserListView(userList: string[], yourAccount: string, interlocutorHandler: Function, handler?: Function) {
+    setUserListView(userList: string[], yourAccount: string, interlocutorHandler: CallbackFunction, handler?: Function) {
         if (userList !== null) {
             userList.forEach(user => {
                 const newUser = document.createElement('li');
@@ -79,7 +81,7 @@ export class View {
     }
 
     /** Add event on "send" button */
-    sendMessageView(handler: Function) {
+    sendMessageView(handler: CallbackFunction) {
         this.messageForm.addEventListener('submit', () => {
             event!.preventDefault();
             if (this.messageInput.value !== '') {
